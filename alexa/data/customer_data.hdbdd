@@ -1,0 +1,27 @@
+namespace alexa.data;
+
+@Schema: 'alexa'
+
+context customer_data {
+
+ 	type SString : String(40);
+ 	type LString : String(255);
+ 	type Location: Decimal(12,9);
+
+ 	@Catalog.tableType : #COLUMN
+ 	Entity Customers {
+ 		key ID: Integer;
+            NAME: SString;
+            COUNTRY: SString;
+            DESCRIPTION: LString;
+            LATITUDE: Location;
+            LONGITUDE: Location;
+    };
+    
+    Entity Actual_Country {
+ 		key COUNTRY: SString;
+        key LATITUDE: SString;
+        key LONGITUDE: SString;
+    };
+    
+};

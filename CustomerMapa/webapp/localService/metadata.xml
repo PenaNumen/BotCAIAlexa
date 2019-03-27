@@ -1,0 +1,15 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+		<Schema xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+			xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm"
+			Namespace="alexa.data.customers">
+			<EntityType Name="CustomersType">
+				<Key><PropertyRef Name="ID"/></Key><Property Name="ID" Type="Edm.Int32" Nullable="false"/><Property Name="NAME" Type="Edm.String" MaxLength="40"/><Property Name="COUNTRY" Type="Edm.String" MaxLength="40"/><Property Name="DESCRIPTION" Type="Edm.String" MaxLength="255"/><Property Name="LATITUDE" Type="Edm.String" MaxLength="40"/><Property Name="LONGITUDE" Type="Edm.String" MaxLength="40"/></EntityType>
+			<EntityType Name="CustomersCountryType">
+				<Key><PropertyRef Name="COUNTRY"/></Key><Property Name="COUNTRY" Type="Edm.String" Nullable="false" MaxLength="40"/><Property Name="QTY" Type="Edm.Decimal" Precision="18" Scale="0"/></EntityType>
+			<EntityType Name="ActualCountryType">
+				<Key><PropertyRef Name="COUNTRY"/><PropertyRef Name="LATITUDE"/><PropertyRef Name="LONGITUDE"/></Key><Property Name="COUNTRY" Type="Edm.String" Nullable="false" MaxLength="40"/><Property Name="LATITUDE" Type="Edm.String" Nullable="false" MaxLength="40"/><Property Name="LONGITUDE" Type="Edm.String" Nullable="false" MaxLength="40"/></EntityType>
+			<EntityContainer Name="customers" m:IsDefaultEntityContainer="true"><EntitySet Name="Customers" EntityType="alexa.data.customers.CustomersType"/><EntitySet Name="CustomersCountry" EntityType="alexa.data.customers.CustomersCountryType"/><EntitySet Name="ActualCountry" EntityType="alexa.data.customers.ActualCountryType"/></EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

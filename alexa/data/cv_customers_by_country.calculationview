@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cv_customers_by_country" applyPrivilegeType="ANALYTIC_PRIVILEGE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="2.3" defaultClient="crossClient" visibility="internal" outputViewType="Projection" calculationScenarioType="TREE_BASED" enforceSqlExecution="false">
+<descriptions defaultDescription="Customer by Country"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="alexa.data::customer_data.Customers" type="DATA_BASE_TABLE">
+    <viewAttributes allViewAttributes="true"/>
+    <columnObject schemaName="alexa" columnObjectName="alexa.data::customer_data.Customers"/>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="NAME"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="#alexa.data::customer_data.Customers">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="NAME" aggregationType="count"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="#Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NAME" source="NAME"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="COUNTRY" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="QTY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QTY"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="NAME"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="78" y="297"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="78" y="226"/>
+      <rectangleSize height="30" width="140"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

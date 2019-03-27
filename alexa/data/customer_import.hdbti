@@ -1,0 +1,7 @@
+import	= 	[
+    			{
+					cdstable  =	"alexa.data::customer_data.Customers";
+					file = "alexa.data:customers_list.csv"; 	     
+					header = false;		
+    			}
+     		];

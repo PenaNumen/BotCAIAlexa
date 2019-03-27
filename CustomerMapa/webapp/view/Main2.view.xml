@@ -1,0 +1,71 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:vbm="sap.ui.vbm" controllerName="customer.CustomerMapa.controller.Main" displayBlock="true">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content><FlexBox id="flexbox" class="borda sapUiSmallMarginTop" width="100%">
+							<VBox height="100%" width="50%" alignItems="Stretch" direction="Column" fitContainer="false" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+							<items>
+							<OverflowToolbar xmlns="sap.m">
+											<Title id="tableHeader" text="Customers" level="H3"/>
+											<ToolbarSpacer/>
+											<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" liveChange="onLiveChange">
+												<layoutData>
+													<OverflowToolbarLayoutData maxWidth="80%" priority="NeverOverflow"/>
+												</layoutData>
+											</SearchField>
+										</OverflowToolbar>
+							<List id="list" headerText="Customers" items="{ path: '/Customers', sorter: { path: 'NAME', descending: false } }" growing="true" growingThreshold="10">
+									<items>
+										<StandardListItem title="{NAME}" info="{COUNTRY}" description="{DESCRIPTION}"/>
+									</items>
+									<headerToolbar>
+									</headerToolbar>
+								</List>
+							</items>
+							</VBox>
+						<items>
+						<VBox xmlns="sap.m" height="100%" width="50%" alignItems="Stretch" direction="Column" fitContainer="false" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+								<viz:Popover id="idPopOver"/>
+								<viz:VizFrame class="border" id="idVizFrame" width="calc(100% + 50px)" height="470px" vizType="pie" vizProperties="{plotArea: {dataLabel:{visible:'true'}}, title:{ text:'Country x Quantity'}, legend:{isScrollable:'true'}}" uiConfig="{applicationSet:'fiori'}" selectData="onSelectData">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{/CustomersCountry}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Pais" value="{COUNTRY}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="Quantidade" value="{QTY}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="size" type="Measure" values="Quantidade"/>
+										<viz.feeds:FeedItem uid="color" type="Dimension" values="Pais"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							<items>
+							<vbm:GeoMap id="geoMap" legendVisible="true" scaleVisible="true" width="100%" height="600px" initialPosition="0;0;0" centerPosition="{position>/postionLongitude};{position&gt;/postionLatitude};0" initialZoom="1" zoomlevel="{position>/zoomlevel}" enableAnimation="false" refMapLayerStack="Default" disableZoom="false" disablePan="false">
+									<vbm:resources/>
+									<vbm:legend>
+										<vbm:Legend id="legend" caption="Legend">
+											<vbm:LegendItem text="Customers" semanticSpotType="Error"/>
+										</vbm:Legend>
+									</vbm:legend>
+									<vbm:vos>
+										<vbm:Spots id="spots" items="{ path: 'spots>/'}">
+											<vbm:items>
+												<vbm:Spot type="Error" tooltip="{spots>NAME}" position="{spots>LONGITUDE};{spots&gt;LATITUDE};0" icon="sap-icon://customer"/>
+											</vbm:items>
+										</vbm:Spots>
+									</vbm:vos>
+								</vbm:GeoMap>
+							</items>
+							</VBox>
+						</items>
+						</FlexBox>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

@@ -1,0 +1,8 @@
+service  { 
+   "alexa.data::customer_data.Customers" as "Customers";
+   
+   "alexa.data/cv_customers_by_country.calculationview" as "CustomersCountry" key ("COUNTRY");
+   
+   "alexa.data::customer_data.Actual_Country" as "ActualCountry";
+   
+}  

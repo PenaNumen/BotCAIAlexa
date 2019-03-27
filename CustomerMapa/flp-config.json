@@ -1,0 +1,34 @@
+{
+    "application": {
+        "id": "",
+        "title": "customer.CustomerMapa.CustomerMapa",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#CustomerMapa-Display",
+        "navigationComponentName": "customer.CustomerMapa",
+        "intentSemanticObject": "CustomerMapa",
+        "intentAction": "Display",
+        "html5ApplicationName": "customermapa",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "0ac5a39e-56a9-4a30-8881-b776ba048058-1552573257524"
+        ],
+        "contentPackages": [
+            "b0264773-e7f0-44b0-b478-77eddd4e8705-1552573357349"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "Customer",
+        "subtitle": "Chart & Maps",
+        "searchKeywords": "Customer,Chart & Maps",
+        "displayIconUrl": "sap-icon://approvals",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}

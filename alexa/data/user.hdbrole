@@ -1,0 +1,7 @@
+role alexa.data::user
+{
+catalog sql object "alexa"."alexa.data::mydata.Book": //Objecttype: TABLE
+	SELECT, INSERT, UPDATE, DELETE;
+
+
+}
