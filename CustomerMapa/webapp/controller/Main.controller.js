@@ -136,7 +136,7 @@ sap.ui.define([
 			this.setTimeoutJs();
 
 			var accessTokenMapbox =
-				'pk.eyJ1IjoiYWxleGFuZHJlZm9zc2F0aWZpbGhvIiwiYSI6ImNqbTljZzBxODBjMnQzdm8zbXNpMDBjMmcifQ.jvqBe8_1mF37czsK0_WFjA';
+				'<Insira o Token da sua conta no MapBox que estamos usando>';
 			var oGeoMap = this.getView().byId("geoMap");
 			var oMapConfig = {
 				"MapProvider": {
